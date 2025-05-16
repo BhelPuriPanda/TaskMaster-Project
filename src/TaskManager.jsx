@@ -76,17 +76,34 @@ const handleLogout = async () => {
   };
 
   return (
+    
     <div className="min-h-screen bg-black text-white flex flex-col items-center p-6 bg-cover bg-center bg-no-repeat"
     style={{
       backgroundImage : "url('./image2.png')",
       backgroundColor: "rgba(0, 0, 0, 0.65)",
       backgroundBlendMode: "overlay",
     }}>
-      <h1 className="text-7xl font-semibold mt-8 mb-6 text-gray-50  text-center">
+      {user && (
+  <nav className="w-full bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow-lg shadow-xl/20 shadow-blue-500">
+    <h1 className="text-lg font-semibold">
+      👋 Welcome, {user.email.split("@")[0]}
+    </h1>
+    <button
+      onClick={() => {
+        signOut(auth);
+      }}
+      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+    >
+      Logout
+    </button>
+  </nav>
+)}
+
+      <h1 className="text-6xl font-semibold mt-5 mb-4 text-gray-50  text-center">
         <span className="text-blue-400">Welcome to</span> TaskMaster
         <br />
-        <span className="text-sm md:text-base font-normal text-gray-400">
-          TaskMaster would hunt you down if you don't finish all your TASKS !!
+        <span className="text-sm md:text-base font-normal mt-2 text-gray-300">
+          "TaskMaster would hunt you down if you don't finish all your TASKS!!"
         </span>
       </h1>
 
@@ -109,9 +126,24 @@ const handleLogout = async () => {
           </button>
         </div>
 
-        <p className="text-sm text-gray-300 mb-4 text-center">
-          ✅ Completed: {tasks.filter((t) => t.completed).length} / {tasks.length}
-        </p>
+        {tasks.length > 0 && (
+  <div className="w-0.8 bg-gray-50 rounded-md h-1 mt-6 mb-2">
+    <div
+      className="bg-green-500 h-1 rounded-md transition-all duration-300"
+      style={{
+        width: `${(tasks.filter((t) => t.completed).length / tasks.length) * 100}%`,
+      }}
+    ></div>
+  </div>
+)}
+<p className="text-sm text-gray-700 mb-6">
+  {tasks.filter((t) => t.completed).length} of {tasks.length} tasks completed (
+  {tasks.length === 0
+  ? 0
+  : Math.round((tasks.filter((t) => t.completed).length / tasks.length) * 100)}%
+)
+</p>
+
 
         <ul className="space-y-3">
           {tasks.map((t) => (
@@ -144,12 +176,6 @@ const handleLogout = async () => {
           ))}
         </ul>
       </div>
-      <button
-        onClick={handleLogout}
-        className="bg-red-500 my-9 px-5 py-2 rounded-md text-white text-md  hover:bg-red-600 drop-shadow-red-600  hover:drop-shadow-md transition" 
-      >
-        Logout
-      </button>
     </div>
   );
 }

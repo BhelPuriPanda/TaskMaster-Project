@@ -41,15 +41,15 @@ export default function Login() {
   className="min-h-screen w-screen text-white flex flex-col items-center justify-center px-4 py-10 overflow-x-hidden bg-cover bg-center bg-no-repeat"
   style={{
     backgroundImage: "url('/image1.png')",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
     backgroundBlendMode: "overlay",
   }}
 >
       <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-semibold mb-10 leading-snug">
         Welcome Back to <span className="text-blue-400">TaskMaster</span>
         <br />
-        <span className="text-sm md:text-base font-normal text-gray-300">
-          Login or Signup to continue
+        <span className="text-sm md:text-base font-normal text-gray-500">
+          Enter your credentials to get back to work
         </span>
       </h1>
 

@@ -41,7 +41,7 @@ export default function Signup() {
   className="min-h-screen w-screen text-white flex flex-col items-center justify-center px-4 py-10 overflow-x-hidden bg-cover bg-center bg-no-repeat"
   style={{
     backgroundImage: "url('/image1.png')",
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
     backgroundBlendMode: "overlay",
   }}
 >
@@ -65,7 +65,7 @@ export default function Signup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-2 border text-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full px-4 py-2 border text-white border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
           />
           <input
             type="password"
@@ -73,7 +73,7 @@ export default function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-2 border text-white border-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full px-4 py-2 border text-white border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
           />
           <button
   type="submit"
