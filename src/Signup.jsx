@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "./firebase";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const provider = new GoogleAuthProvider();
 
@@ -17,7 +20,7 @@ export default function Signup() {
     setError("");
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard"); // Redirect after signup
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }
@@ -27,46 +30,80 @@ export default function Signup() {
     setError("");
     try {
       await signInWithPopup(auth, provider);
-      navigate("/dashboard"); // Redirect after Google signup
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSignup}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ display: "block", marginBottom: "10px", padding: "8px" }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ display: "block", marginBottom: "10px", padding: "8px" }}
-        />
-        <button type="submit" style={{ padding: "8px 12px" }}>Sign Up</button>
-      </form>
+    <div
+  className="min-h-screen w-screen text-white flex flex-col items-center justify-center px-4 py-10 overflow-x-hidden bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: "url('/image1.png')",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    backgroundBlendMode: "overlay",
+  }}
+>
+      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-semibold mb-10 leading-snug">
+        Create your <span className="text-blue-400">TaskMaster</span> account
+        <br />
+        <span className="text-sm md:text-base font-normal text-gray-500">
+          Sign up to manage your tasks efficiently
+        </span>
+      </h1>
 
-      <button
-        onClick={handleGoogleSignup}
-        style={{ marginTop: "15px", padding: "8px 12px" }}
-      >
-        Sign up with Google
-      </button>
-      <p style={{ marginTop: "10px" }}>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
+      <div className="bg-gray-950 backdrop-blur-lg p-8 rounded-2xl w-full max-w-md text-white">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-gray-100">
+          Sign Up to TaskMaster
+        </h2>
 
-      {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+        <form onSubmit={handleSignup} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full px-4 py-2 border text-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-full px-4 py-2 border text-white border-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+          />
+          <button
+  type="submit"
+  className="w-full bg-white text-black py-2 rounded-lg hover:bg-gray-200 transition"
+>
+  Sign Up
+</button>
+        </form>
+
+        <div className="my-4 text-center text-gray-200">or</div>
+
+        <button
+  onClick={handleGoogleSignup}
+  className="w-full bg-white text-black py-2 rounded-lg hover:bg-gray-200 transition"
+>
+  Sign up with Google
+</button>
+
+
+        <p className="mt-4 text-sm text-center text-gray-100">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-500 hover:underline">
+            Log in
+          </Link>
+        </p>
+
+        {error && (
+          <p className="mt-4 text-sm text-red-600 text-center">{error}</p>
+        )}
+      </div>
     </div>
   );
 }

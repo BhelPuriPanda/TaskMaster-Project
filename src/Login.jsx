@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "./firebase";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -33,9 +37,26 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">Login to TaskMaster</h2>
+    <div
+  className="min-h-screen w-screen text-white flex flex-col items-center justify-center px-4 py-10 overflow-x-hidden bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: "url('/image1.png')",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundBlendMode: "overlay",
+  }}
+>
+      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-semibold mb-10 leading-snug">
+        Welcome Back to <span className="text-blue-400">TaskMaster</span>
+        <br />
+        <span className="text-sm md:text-base font-normal text-gray-300">
+          Login or Signup to continue
+        </span>
+      </h1>
+
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-black">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
+          Login to TaskMaster
+        </h2>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <input
@@ -44,7 +65,7 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <input
             type="password"
@@ -52,11 +73,11 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+            className="w-full bg-gray-900 text-white py-2 rounded-lg hover:bg-gray-950 transition"
           >
             Login
           </button>
@@ -66,7 +87,7 @@ export default function Login() {
 
         <button
           onClick={handleGoogleLogin}
-          className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+          className="w-full bg-gray-900 text-white py-2 rounded-lg hover:bg-gray-950 transition"
         >
           Sign in with Google
         </button>
@@ -78,7 +99,9 @@ export default function Login() {
           </Link>
         </p>
 
-        {error && <p className="mt-4 text-sm text-red-600 text-center">{error}</p>}
+        {error && (
+          <p className="mt-4 text-sm text-red-600 text-center">{error}</p>
+        )}
       </div>
     </div>
   );
