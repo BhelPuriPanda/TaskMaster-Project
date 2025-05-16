@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 import { useNavigate, Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 const provider = new GoogleAuthProvider();
 
@@ -53,7 +54,7 @@ export default function Signup() {
         </span>
       </h1>
 
-      <div className="bg-gray-950 backdrop-blur-lg p-8 rounded-2xl w-full max-w-md text-white">
+      <div className="bg-black backdrop-blur-lg p-8 rounded-2xl w-full max-w-md text-white">
         <h2 className="text-2xl font-semibold text-center mb-6 text-gray-100">
           Sign Up to TaskMaster
         </h2>
@@ -85,12 +86,13 @@ export default function Signup() {
 
         <div className="my-4 text-center text-gray-200">or</div>
 
-        <button
-  onClick={handleGoogleSignup}
-  className="w-full bg-white text-black py-2 rounded-lg hover:bg-gray-200 transition"
->
-  Sign up with Google
-</button>
+         <button
+          onClick={handleGoogleSignup}
+          className="w-full flex items-center justify-center gap-2 bg-white text-black font-medium py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+        >
+          <FcGoogle size={20} />
+          Sign up with Google
+        </button>
 
 
         <p className="mt-4 text-sm text-center text-gray-100">
